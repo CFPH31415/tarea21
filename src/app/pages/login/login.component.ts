@@ -1,0 +1,49 @@
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
+
+@Component({
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
+})
+export class LoginComponent implements OnInit {
+
+  public formLogin!: FormGroup;
+  reciboAdmini!: any[];
+
+  condi = "true";
+
+  constructor(private router: Router, private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.formLogin = this.formBuilder.group({
+      userInput: ['',
+        [
+          Validators.required,
+        ]
+      ],
+      passInput: ['',
+        [
+          Validators.required,
+        ]
+      ]
+    })
+  }
+  validar() {
+    let recibo = localStorage.getItem('usuarioAdmini');
+
+    if (recibo != null) this.reciboAdmini = JSON.parse(recibo)
+
+    for (let i of this.reciboAdmini) {
+      if (i.usuario == this.formLogin.value.userInput && i.password == this.formLogin.value.passInput) {
+        
+        localStorage.setItem('condicion', this.condi);
+        alert("Bienvenido");
+      } else {
+        alert("Datos incorrectos");
+      }
+    }
+  }
+}
