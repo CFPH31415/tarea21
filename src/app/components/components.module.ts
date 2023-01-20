@@ -4,7 +4,6 @@ import { HeaderComponent } from './header/header.component';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 
-
 @NgModule({
   declarations: [
     HeaderComponent
@@ -12,7 +11,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   imports: [
     CommonModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
   ],
   exports: [
     HeaderComponent
